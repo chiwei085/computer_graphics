@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+.ruff_cache/
+build/
+dist/
+wheels/
+*.egg-info
+*.log
+
+# Virtual environments
+.venv/
+
+.cache
+
+# CMake / IDE
+CMakeUserPresets.json
+cmake-build-*/
