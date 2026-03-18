@@ -18,27 +18,21 @@ struct App final
 
         const float L = -4.f, R = 4.f, B = -4.f, T = 4.f;
 
-        if (a.shade == ShadeModel::Flat) {
-            glColor3f(0.f, 1.f, 1.f);
-            glBegin(GL_QUADS);
-            glVertex3f(L, B, 0.f);
-            glVertex3f(R, B, 0.f);
-            glVertex3f(R, T, 0.f);
-            glVertex3f(L, T, 0.f);
-            glEnd();
-        }
-        else {
-            glBegin(GL_QUADS);
-            glColor3f(0.f, 1.f, 0.f);
-            glVertex3f(L, T, 0.f);  // left-top: green
-            glColor3f(1.f, 0.f, 0.f);
-            glVertex3f(R, T, 0.f);  // right-top: red
-            glColor3f(1.f, 0.f, 1.f);
-            glVertex3f(R, B, 0.f);  // right-bottom: magenta
-            glColor3f(0.f, 0.f, 1.f);
-            glVertex3f(L, B, 0.f);  // left-bottom: blue
-            glEnd();
-        }
+        // GL_FLAT uses the last vertex color (cyan) and applies it to the
+        // entire primitive
+        // GL_SMOOTH interpolates between vertex colors,
+        // producing a gradient effect
+        glBegin(GL_QUADS);
+        glColor3f(0.f, 0.f, 1.f);
+        glVertex3f(L, B, 0.f);  // left-bottom:  blue
+        glColor3f(0.f, 1.f, 0.f);
+        glVertex3f(L, T, 0.f);  // left-top:     green
+        glColor3f(1.f, 0.f, 0.f);
+        glVertex3f(R, T, 0.f);  // right-top:    red
+        glColor3f(0.f, 1.f, 1.f);
+        glVertex3f(R, B,
+                   0.f);  // right-bottom: cyan  ← flat color (last vertex)
+        glEnd();
 
         glutSwapBuffers();
     }
