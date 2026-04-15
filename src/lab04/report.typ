@@ -1,13 +1,13 @@
 #import "@preview/articulate-coderscompass:0.1.7": articulate-coderscompass, callout
 
 #show: articulate-coderscompass.with(
-  title: "Lab 04: Arbitrary Axis Rotation",
+  title: "Lab 05: Arbitrary Axis Rotation",
   subtitle: "Mouse-Driven Axis Selection and World-Space Quaternion Rotation",
   authors: (
     (name: "Chi-Wei Yeh", email: "yehchiwei.work@gmail.com", affiliation: "Computer Graphics"),
   ),
   abstract: [
-    Lab 04 extends the Lab 03 pipeline with arbitrary axis rotation. A three-state machine
+    Lab 05 extends the Lab 04 pipeline with arbitrary axis rotation. A three-state machine
     (Normal / PickAxis / AxisLocked) lets the user click a point in the viewport; the coordinate
     is unprojected onto the world-space $z = 0$ plane via the inverse clip matrix, defining a
     rotation axis through the origin. Rotation is accumulated with pre-multiplied quaternions,
