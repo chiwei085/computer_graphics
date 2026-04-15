@@ -1,0 +1,3 @@
+add_executable(lab04_triangular_prism triangular_prism.cpp)
+target_compile_features(lab04_triangular_prism PRIVATE cxx_std_17)
+target_link_libraries(lab04_triangular_prism PRIVATE cg_gl)
