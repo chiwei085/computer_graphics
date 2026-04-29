@@ -1,0 +1,3 @@
+add_executable(lab05_clickable_grid clickable_grid.cpp)
+target_compile_features(lab05_clickable_grid PRIVATE cxx_std_17)
+target_link_libraries(lab05_clickable_grid PRIVATE cg_gl)
