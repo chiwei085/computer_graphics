@@ -1,0 +1,3 @@
+add_executable(lab06_clickable_line clickable_line.cpp)
+target_compile_features(lab06_clickable_line PRIVATE cxx_std_17)
+target_link_libraries(lab06_clickable_line PRIVATE cg_gl)
