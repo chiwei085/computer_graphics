@@ -1,0 +1,3 @@
+add_executable(lab09_poly_fill poly_fill.cpp)
+target_compile_features(lab09_poly_fill PRIVATE cxx_std_17)
+target_link_libraries(lab09_poly_fill PRIVATE cg_gl)
