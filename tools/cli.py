@@ -180,6 +180,24 @@ def is_runnable_binary(path: Path) -> bool:
     return os.access(path, os.X_OK)
 
 
+def current_executable_paths_for_lab(lab: str, build_dir: Path) -> set[Path]:
+    build_ninja = build_dir / "build.ninja"
+    if not build_ninja.exists():
+        return set()
+
+    key = "  TARGET_FILE = "
+    prefix = f"{key}src/{lab}/"
+    paths: set[Path] = set()
+
+    for line in build_ninja.read_text(encoding="utf-8").splitlines():
+        if not line.startswith(prefix):
+            continue
+        rel = line.removeprefix(key)
+        paths.add(build_dir / Path(rel))
+
+    return paths
+
+
 def find_executables_for_lab(
     lab: str, build_dir: Path
 ) -> tuple[Path, list[Path]]:
@@ -187,7 +205,14 @@ def find_executables_for_lab(
     if not lab_dir.exists():
         return lab_dir, []
 
-    exes = [p for p in lab_dir.rglob("*") if is_runnable_binary(p)]
+    expected_exes = current_executable_paths_for_lab(lab, build_dir)
+    if expected_exes:
+        exes = [
+            p for p in expected_exes if p.exists() and is_runnable_binary(p)
+        ]
+    else:
+        exes = [p for p in lab_dir.rglob("*") if is_runnable_binary(p)]
+
     exes = sorted(set(exes), key=lambda p: p.relative_to(lab_dir).as_posix())
     return lab_dir, exes
 
