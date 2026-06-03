@@ -1,0 +1,7 @@
+add_executable(lab10_read_image read_image.cpp)
+target_compile_features(lab10_read_image PRIVATE cxx_std_17)
+target_link_libraries(lab10_read_image PRIVATE cg_gl)
+
+add_executable(lab10_creative_object creative_object.cpp)
+target_compile_features(lab10_creative_object PRIVATE cxx_std_17)
+target_link_libraries(lab10_creative_object PRIVATE cg_gl)
